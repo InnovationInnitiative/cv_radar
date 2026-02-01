@@ -128,6 +128,12 @@ export default function Home() {
           setMasterGithubJobs(ghJobs); // Save Master Copy
           // Merge GitHub with Pinned
           currentJobs = [...currentJobs, ...ghJobs];
+
+          // SAFETY FILTER: Ensure no Pinned Internships leak into "Jobs" tab
+          if (activeTab === 'jobs') {
+            currentJobs = currentJobs.filter(j => !j.source.includes('Featured'));
+          }
+
           // Dedupe again to keep pinned at top (dedupe preserves order)
           currentJobs = deduplicateJobs(currentJobs, profile.major || "fresher", activeTab);
           setJobs([...currentJobs]);

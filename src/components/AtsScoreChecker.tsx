@@ -181,7 +181,7 @@ export function AtsScoreChecker() {
                         </div>
                     ) : (
                         <textarea
-                            className="w-full h-40 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent"
+                            className="w-full h-40 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent text-black placeholder:text-gray-500"
                             placeholder="Paste your resume text here..."
                             value={resumeText}
                             onChange={(e) => setResumeText(e.target.value)}
@@ -201,7 +201,7 @@ export function AtsScoreChecker() {
                         Job Description (Optional)
                     </label>
                     <textarea
-                        className="w-full h-32 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent"
+                        className="w-full h-32 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent text-black placeholder:text-gray-500"
                         placeholder="Paste the job description here for better matching..."
                         value={jobDescription}
                         onChange={(e) => setJobDescription(e.target.value)}
@@ -259,7 +259,7 @@ export function AtsScoreChecker() {
             </div>
 
             <div className="mt-8 border-t border-gray-100 pt-8">
-                <AdBanner size="leaderboard" />
+                <AdBanner size="rect" />
             </div>
         </div>
     );
