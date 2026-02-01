@@ -26,7 +26,7 @@ export default function RootLayout({
         <UserProvider>
           <div className="flex flex-col min-h-screen">
             <AdSocialBar />
-            <AdPopunder />
+            <AdSidebar />
             <div className="flex-grow">
               {children}
             </div>
