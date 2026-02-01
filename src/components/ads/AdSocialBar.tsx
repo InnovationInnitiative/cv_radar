@@ -13,13 +13,10 @@ export function AdSocialBar() {
         if (loaded.current) return;
         loaded.current = true;
 
-        // --- PASTE YOUR ADSTERRA SOCIAL BAR SCRIPT HERE ---
-        // Example:
-        // const script = document.createElement('script');
-        // script.src = '//pl12345678.example.com/ab/cd/ef/script.js';
-        // script.type = 'text/javascript';
-        // document.body.appendChild(script);
-        // --------------------------------------------------
+        const script = document.createElement('script');
+        script.src = "https://pl28623972.effectivegatecpm.com/a1/d2/70/a1d270f80e7415678f49140edc0d145d.js";
+        script.async = true;
+        document.body.appendChild(script);
 
     }, []);
 

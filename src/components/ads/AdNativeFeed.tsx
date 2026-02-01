@@ -14,27 +14,23 @@ export function AdNativeFeed() {
         if (bannerRef.current && !loaded.current) {
             loaded.current = true;
 
-            // --- PASTE YOUR ADSTERRA BANNER SCRIPT HERE ---
-            // Note: If the script uses document.write(), it won't work in React efficiently.
-            // Ideally, use the "Async" code from Adsterra that creates an iframe or div.
+            const script = document.createElement('script');
+            script.async = true;
+            script.dataset.cfasync = "false";
+            script.src = "https://pl28623982.effectivegatecpm.com/ef2db968c608b3cbc01db06c8fe5d696/invoke.js";
 
-            // Example for simple iframe/script injection:
-            /*
-            const conf = document.createElement('script');
-            conf.type = 'text/javascript';
-            conf.src = '//www.highperformanceformat.com/watchnew?key=...';
-            bannerRef.current.appendChild(conf);
-            */
-            // ----------------------------------------------
+            if (bannerRef.current) {
+                bannerRef.current.appendChild(script);
+            }
         }
     }, []);
 
     return (
         <div className="my-8 mx-auto w-full max-w-4xl p-4 bg-gray-50 border border-dashed border-gray-300 rounded-xl flex items-center justify-center min-h-[100px]">
-            <div ref={bannerRef} id="adsterra-native-container" className="text-center">
+            <div ref={bannerRef} className="text-center w-full">
                 <p className="text-xs text-gray-400 mb-2 font-mono">SPONSORED OPPORTUNITY</p>
-                {/* Script will inject here */}
-                <div className="text-gray-300 text-sm">[Adsterra Native Banner Placeholder]</div>
+                {/* Specific Adsterra Container */}
+                <div id="container-ef2db968c608b3cbc01db06c8fe5d696"></div>
             </div>
         </div>
     );

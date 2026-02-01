@@ -7,33 +7,59 @@ import { useEffect, useRef } from 'react';
  * PASTE YOUR SCRIPT HERE.
  */
 export function AdBanner({ size = "auto" }: { size?: "auto" | "rect" | "leaderboard" }) {
-    const bannerRef = useRef<HTMLDivElement>(null);
-    const loaded = useRef(false);
-
-    useEffect(() => {
-        if (bannerRef.current && !loaded.current) {
-            loaded.current = true;
-            // --- PASTE YOUR ADSTERRA SCRIPT HERE ---
-            // Example:
-            /*
-             const conf = document.createElement('script');
-             conf.src = '//...';
-             bannerRef.current.appendChild(conf);
-            */
-            // ---------------------------------------
-        }
-    }, []);
-
+    // Only render the Safe Banner for rectangular slots or auto slots
+    // Leaderboards are not configured yet with this specific code
     return (
         <div className={`my-6 mx-auto bg-gray-50 border border-dashed border-gray-300 rounded flex items-center justify-center p-2
             ${size === 'rect' ? 'w-[300px] h-[250px]' : ''}
             ${size === 'leaderboard' ? 'w-[728px] h-[90px]' : ''}
             ${size === 'auto' ? 'w-full min-h-[100px]' : ''}
         `}>
-            <div ref={bannerRef} className="text-center">
-                <span className="text-xs text-gray-400 block mb-1">ADVERTISEMENT</span>
-                <span className="text-gray-300 text-xs">[Paste Script Here]</span>
-            </div>
+            <SafeAdsterraBanner />
         </div>
+    );
+}
+
+function SafeAdsterraBanner() {
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+
+    useEffect(() => {
+        const iframe = iframeRef.current;
+        if (!iframe) return;
+
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (!doc) return;
+
+        doc.open();
+        doc.write(`
+            <!DOCTYPE html>
+            <html>
+            <head><style>body{margin:0;padding:0;overflow:hidden;background:transparent;}</style></head>
+            <body>
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '37f0944f1a5b6d77dfd0c523972d9b94',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highperformanceformat.com/37f0944f1a5b6d77dfd0c523972d9b94/invoke.js"></script>
+            </body>
+            </html>
+        `);
+        doc.close();
+    }, []);
+
+    return (
+        <iframe
+            ref={iframeRef}
+            width={300}
+            height={250}
+            scrolling="no"
+            frameBorder="0"
+            style={{ width: '300px', height: '250px' }}
+        />
     );
 }

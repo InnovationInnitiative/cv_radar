@@ -33,14 +33,9 @@ export function AdPopunder() {
         setTriggered(true);
         console.log("Creating Popunder Ad...");
 
-        // --- PASTE YOUR ADSTERRA POPUNDER SCRIPT HERE ---
-        // Usually it's just a script tag.
-        /*
         const script = document.createElement('script');
-        script.src = '//pl12345678.example.com/xxxxx/invoke.js';
+        script.src = "https://pl28623926.effectivegatecpm.com/94/67/9b/94679b7cbfef22cd0e93e4558d890e82.js";
         document.body.appendChild(script);
-        */
-        // ------------------------------------------------
     };
 
     return null; // Invisible component
