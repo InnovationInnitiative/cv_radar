@@ -108,7 +108,47 @@ export function UserProfileModal({ isOpen, onClose }: { isOpen: boolean; onClose
                         </select>
                     </div>
 
-                    {/* PDF Upload Removed for Vercel Build Stability */}
+                    {/* Optional PDF Upload */}
+                    <div className="pt-2 border-t border-gray-100">
+                        <label className="block text-sm font-bold text-black mb-1">Resume (Optional)</label>
+                        <p className="text-xs text-gray-500 mb-2">Upload now to auto-fill the ATS checker.</p>
+
+                        {!formData.resumeFileName ? (
+                            <input
+                                type="file"
+                                accept=".pdf"
+                                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                                onChange={async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                        try {
+                                            const { extractTextFromPdf } = await import('../utils/pdf-parser');
+                                            const text = await extractTextFromPdf(file);
+                                            setFormData(prev => ({
+                                                ...prev,
+                                                resumeText: text,
+                                                resumeFileName: file.name
+                                            }));
+                                        } catch (err) {
+                                            console.error("Failed to parse PDF", err);
+                                            alert("Failed to read PDF. Ensure it is text-based.");
+                                        }
+                                    }
+                                }}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-between bg-green-50 p-2 rounded">
+                                <span className="text-xs font-medium text-green-700 truncate">{formData.resumeFileName}</span>
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData(prev => ({ ...prev, resumeText: undefined, resumeFileName: undefined }))}
+                                    className="text-xs text-red-500 hover:text-red-700 font-bold"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        )}
+                    </div>
 
                     <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
                         Save Profile

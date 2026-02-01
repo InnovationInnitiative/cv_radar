@@ -13,12 +13,10 @@ import { AdNativeFeed } from '../components/ads/AdNativeFeed';
 import { Search, Loader2 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-/*
 const AtsScoreChecker = dynamic(() => import('../components/AtsScoreChecker').then(mod => mod.AtsScoreChecker), {
   ssr: false,
   loading: () => <div className="p-8 text-center bg-white rounded-xl shadow-sm">Loading ATS Engine...</div>
 });
-*/
 
 export default function Home() {
   const { profile } = useUser();
@@ -311,7 +309,7 @@ export default function Home() {
         ) : (
 */}
         {activeTab === 'ats' ? (
-          <div className="p-12 text-center">ATS Checker Temporarily Disabled for Maintenance</div>
+          <AtsScoreChecker />
         ) : (
           <>
             {/* Search Hero */}
