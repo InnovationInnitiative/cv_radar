@@ -280,7 +280,7 @@ function JobAuditContent() {
                         {/* Right: Content */}
                         <div className="lg:col-span-2 space-y-8">
                             <div className="bg-white rounded-xl shadow-sm p-8">
-                                <h1 className="text-2xl font-bold mb-2">{title}</h1>
+                                <h1 className="text-2xl font-bold mb-2 text-black">{title}</h1>
                                 <div className="flex items-center justify-between mb-6">
                                     <div className="text-sm text-gray-500">{source}</div>
                                     <a

@@ -280,7 +280,7 @@ export default function Home() {
           {/* New: Filters */}
           <div className="flex justify-end mt-4">
             <select
-              className="text-sm border-gray-200 rounded-md shadow-sm focus:border-black focus:ring-black"
+              className="text-sm border-gray-200 rounded-md shadow-sm focus:border-black focus:ring-black text-black"
               onChange={(e) => {
                 if (!profile) {
                   setIsModalOpen(true);
